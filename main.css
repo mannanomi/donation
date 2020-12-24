@@ -1,0 +1,162 @@
+
+*{
+
+box-sizing: border-box;
+
+}
+
+body{
+
+    margin: 0px;
+    padding: 10px;
+    text-align: center;
+}
+
+header , footer {
+    padding: 5px;
+    background-color: rgb(89, 212, 126);
+    color: black;
+    border-radius: 10px;
+}
+
+section{
+
+        width: 75%;
+        float: left;
+        height: 2000px;
+        background: rgba(224, 228, 226, 0.993);
+}
+
+.right{
+    width: 23%;
+    float: left;
+    height: 2000px;
+    background: rgba(224, 228, 226, 0.993);
+    border-left: 1px solid  rgb(89, 212, 126);
+    border-right: 1px solid  rgb(89, 212, 126);
+    margin-left: 2%;
+
+}
+.main * {
+    border-radius: 10px;
+}
+
+.main{
+    margin: 10px 0px;
+}
+.main::after{
+ content: "";
+ clear: both;
+ display: table;
+}
+
+
+
+
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: rgb(16, 127, 192);
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+
+
+
+*{
+	font-family: sans-serif;
+	box-sizing: border-box;
+}
+
+
+h2 {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+input {
+	display: block;
+	border: 2px solid #ccc;
+	width: 95%;
+	padding: 10px;
+	margin: 10px auto;
+	border-radius: 5px;
+}
+label {
+	color: #888;
+	font-size: 18px;
+	padding: 10px;
+}
+
+button {
+	float: right;
+	background: rgb(16, 127, 192);
+	padding: 10px 15px;
+	color:  white;
+	border-radius: 5px;
+	margin-right: 10px;
+	border: none;
+}
+button:hover{
+	opacity: .7;
+}
+.error {
+   background: #F2DEDE;
+   color: #A94442;
+   padding: 10px;
+   width: 95%;
+   border-radius: 5px;
+   margin: 20px auto;
+}
+
+h1 {
+	text-align: center;
+	color: #fff;
+}
+
+a {
+	float: right;
+	background: #555;
+	padding: 10px 15px;
+	color: #fff;
+	border-radius: 5px;
+	margin-right: 10px;
+	border: none;
+	text-decoration: none;
+}
+a:hover{
+	opacity: .7;
+}
