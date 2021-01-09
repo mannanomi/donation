@@ -1,13 +1,15 @@
 <?php
 include('login.php');
 if(empty($_SESSION['user_name'])){
-	header('location: ulog.php');
+	header('location: userlogin.php');
 }
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+                    
+    
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   	<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -24,6 +26,7 @@ if(empty($_SESSION['user_name'])){
 
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
 </head>
 <body>
 <?php if(isset($_SESSION['user_name'])): ?>
@@ -35,7 +38,7 @@ if(empty($_SESSION['user_name'])){
 	 <!-- Links -->
 	 <ul class="navbar-nav mx-auto">
 	   <li class="nav-item">
-	     <a class="navbar-brand" href="userindex.php">Go To Home</a>
+	     <a class="navbar-brand" href="userindex.php">Go To Events</a>
 	   </li>
 	 </ul>
 	</div>
@@ -80,7 +83,7 @@ if(empty($_SESSION['user_name'])){
 							Overview </a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="useraupdate.php">
 							<i class="glyphicon glyphicon-user"></i>
 							Account Settings </a>
 						</li>
@@ -105,7 +108,57 @@ if(empty($_SESSION['user_name'])){
 		</div>
 		<div class="col-md-9">
             <div class="profile-content">
-			   Some user related content goes here...
+			 
+<div class="container mt-3">
+
+<div class ="main-div">
+     
+    
+       <div class ="center-div">
+       <div class ="table-responsive">
+          
+       <table>
+            <h3> List of Donation</h3><br>
+           <thead>
+               <tr><th>ID</th>
+                <th>Event Name </th>
+                <th> Category </th> 
+                <th> Amount</th>
+               </tr>
+           </thead>
+           <tbody>
+               <?php
+
+                include 'db_connect.php';
+
+                $selectquery = " select * from donate ";
+                $query = mysqli_query($db,$selectquery);
+
+                $nums = mysqli_num_rows($query);
+                $res = mysqli_fetch_array($query);
+
+                while($res = mysqli_fetch_array($query)){
+                ?>
+                   
+
+                    <tr>
+                        <td> <?php echo $res['id']; ?></td> 
+                        <td> <?php echo $res['title']; ?></td> 
+                        <td> <?php echo $res['category']; ?></td> 
+                        <td> <?php echo $res['amount']; ?></td> 
+                
+                    </tr>
+               
+                <?php
+                }
+                   ?>
+           </tbody>
+           </table>
+       </div>
+     </div> 
+     </div>
+
+</div>
             </div>
 		</div>
 	</div>

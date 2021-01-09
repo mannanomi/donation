@@ -23,7 +23,7 @@ if(empty($_SESSION['username'])){
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<title>User</title>
+<title>Admin</title>
 
  </head>
  <body>
@@ -48,8 +48,13 @@ if(empty($_SESSION['username'])){
 
 <div class="container mt-3">
 
-	<a class="btn btn-primary" href="add_event.php">add new event</a>
+<a class="btn btn-primary" href="add_event.php">Add new event</a>
 <a class="btn btn-primary" href="update_event.php">Update event</a>
+<a class="btn btn-primary" href="donate.php">Donation List</a>
+<a class="btn btn-primary" href="donorlist.php">Donor List</a>
+<a class="btn btn-primary" href="sentmessage.php"> Send Message</a>
+<a class="btn btn-primary" href="allevent.php"> All Events</a>
+
 
 </div>
 

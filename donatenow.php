@@ -1,27 +1,19 @@
-<?php
-include('login.php');
-if(empty($_SESSION['username'])){
-	header('location: loginpage.php');
-}
 
+<?php
 
 require_once 'db_connect.php';
 if(isset($_POST['add-btn'])){
-  $user = $_SESSION['username'];
+    
+  $uname = mysqli_real_escape_string($db, $_POST['user_name']); 
   $title = mysqli_real_escape_string($db, $_POST['title']);
   $category = mysqli_real_escape_string($db, $_POST['category']);
-  $organization = mysqli_real_escape_string($db, $_POST['organization']);
-  $exp = mysqli_real_escape_string($db, $_POST['exp']);
-  $detail = mysqli_real_escape_string($db, $_POST['detail']);
-  $goal = mysqli_real_escape_string($db, $_POST['goal']);
-  $deadline = mysqli_real_escape_string($db, $_POST['deadline']);
-  $email = mysqli_real_escape_string($db, $_POST['email']);
+  $amount = mysqli_real_escape_string($db, $_POST['amount']);
   $mobile = mysqli_real_escape_string($db, $_POST['mobile']);
 
-  $query = "INSERT INTO events (user, title, exp, goal, deadline, detail, organization, category, email, mobile) VALUES ('$user', '$title', '$exp', '$goal', '$deadline', '$detail', '$organization', '$category', '$email', '$mobile')";
+  $query = "INSERT INTO donate (user_name, title, category, amount, mobile) VALUES ( '$uname', '$title','$category','$amount', '$mobile')";
     
   if (mysqli_query($db, $query)) {
-  echo "<script type='text/javascript'>alert('Add successfully');window.location.href='dashboard.php';</script>";
+  echo "<script type='text/javascript'>alert(' Donation given successfully');window.location.href='index.php';</script>";
                                  } 
     
     else {
@@ -34,10 +26,12 @@ mysqli_close($db);
 
  ?>
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Add Event</title>
+  <title>Donation</title>
   <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -52,7 +46,6 @@ mysqli_close($db);
 </head>
 <body>
 
-  <?php if(isset($_SESSION['username'])): ?>
 		<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
 			  <div class="container">
 			 <!-- Brand -->
@@ -61,11 +54,8 @@ mysqli_close($db);
 			 <!-- Links -->
 			 <ul class="navbar-nav ml-auto">
 				 <li class="nav-item">
-	         <a class="nav-link" href="dashboard.php">Dashboard</a>
-	       </li>
-				 <li class="nav-item ml-3">
-		    <a class="btn btn-warning btn-sm font-weight-bold" href="logout.php?logout='1'">Logout</a>
-			   </li>
+	         <a class="nav-link" href="index.php">Home</a>
+                 </li>
 
 			 </ul>
 			</div>
@@ -74,6 +64,9 @@ mysqli_close($db);
     <div class="jumbotron">
       <div class="row d-flex align-items-center justify-content-center">
           <form class="input-form" method="POST" enctype="multipart/form-data" >
+              <h3>Donation Form</h3><br>
+              <h6 class="font-weight-bold mt-3">Username</h6>
+              <input type="text" class="form-control" name="user_name" required>
               <h6 class="font-weight-bold">Event title</h6>
               <input type="text" class="form-control" name="title" required>
               <div class="form-group mt-3">
@@ -86,28 +79,15 @@ mysqli_close($db);
                  <option value="Health">HEALTH & MEDICAL</option>
                </select>
               </div>
-              <h6 class="font-weight-bold mt-3">Organisation</h6>
-              <input type="text" class="form-control" name="organization" required>
                 <h6 class="font-weight-bold mt-3">Amount</h6>
-              <input type="text" class="form-control" name="exp" required>
-                <h6 class="font-weight-bold mt-3">Description</h6>
-                <textarea name="detail" rows="5" cols="60" required></textarea>
-                <h6 class="font-weight-bold mt-3">Goal</h6>
-                <input type="text" class="form-control" name="goal" required>
-                <h6 class="font-weight-bold mt-3">Deadline</h6>
-                <input type="date" class="form-control" name="deadline" required>
-                <h6 class="font-weight-bold mt-3">Email</h6>
-                <input type="email" class="form-control" name="email" required>
+              <input type="text" class="form-control" name="amount" required>
                 <h6 class="font-weight-bold mt-3">Mobile</h6>
                 <input type="text" class="form-control" name="mobile" required>
-               <br>
-              <br>
-              <button class="btn btn-info text-light font-weight-bold mt-3" type="submit" name="add-btn">Add</button>
+              <button class="btn btn-info text-light font-weight-bold mt-3" type="submit" name="add-btn">Donate</button>
           </form>
         </div>
       </div>
 
   </div>
-<?php endif ?>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Update Event</title>
+    <title>Update Account</title>
     <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -21,14 +21,14 @@
     <?php
 
     include('login.php');
-    if(empty($_SESSION['username'])){
-    	header('location: loginpage.php');
+    if(empty($_SESSION['user_name'])){
+    	header('location: userlogin.php');
     }
      ?>
 
-<?php if(isset($_SESSION['username'])):
+<?php if(isset($_SESSION['user_name'])):
 
-$username = $_SESSION['username'];
+$uname = $_SESSION['user_name'];
 
    ?>
    <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
@@ -50,47 +50,37 @@ $username = $_SESSION['username'];
    	</nav>
   <div class="jumbotron">
   <div class="container">
-    <h4 class="text-center"><b><?php echo $username; ?></b></h4>
+    <h4 class="text-center"><b><?php echo $uname; ?></b></h4>
     <div class="row">
 <?php
 
 
         require_once 'db_connect.php';
-        $query = "SELECT * FROM events WHERE user='$username' ORDER BY deadline";
+        $query = "SELECT * FROM users WHERE user_name='$uname' ";
         $result= mysqli_query($db,$query);
         if (mysqli_num_rows($result) > 0){
           while($row = mysqli_fetch_assoc($result)){
-            $id = $row['id'];
-            $title = $row['title'];
-            $exp = $row['exp'];
-            $deadline = $row['deadline'];
+            $unmae = $row['user_name'];
+            $name = $row['name'];
             $email = $row['email'];
             $mobile = $row['mobile'];
-              
     ?>
 
 
 
         <div class="col-12 col-sm-4 col-md-3 mt-3">
-          <div class="card" style="height: 450px;">
+          <div class="card" style="height: 350px;">
           <div class="card-header bg-dark text-light">
-            <h5><?php echo $title; ?></h5>
+            <h5><?php echo $name; ?></h5>
           </div>
           <div class="card-body">
-            <h6 class="font-weight-bold">Amount:</h6>
-            <p><?php echo $exp; ?></p>
-            <h6 class="font-weight-bold">Deadline:</h6>
-            <p><?php echo $deadline; ?></p>
-              <h6 class="font-weight-bold">Email:</h6>
+            <h6 class="font-weight-bold">Email</h6>
             <p><?php echo $email; ?></p>
-              <h6 class="font-weight-bold">Mobile:</h6>
+            <h6 class="font-weight-bold">Mobile</h6>
             <p><?php echo $mobile; ?></p>
           </div>
           <div class="card-footer">
-            <a href="update.php?id=<?php echo $id; ?>">Update Now</a>
-            <a class="text-danger ml-3" href="delete.php?id=<?php echo $id; ?>">Delete Now</a>
-            <a href="picture.php?id=<?php echo $id; ?>">Update Picture</a>
-              
+            <a href="uupdate.php?id=<?php echo $id; ?>">Update Now</a>
           </div>
         </div>
         </div>

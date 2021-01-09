@@ -35,7 +35,7 @@
  Log In
 </button>
 <div class="dropdown-menu">
-  <a class="dropdown-item" href="ulog.php">As User</a>
+  <a class="dropdown-item" href="userlogin.php">As User</a>
   <a class="dropdown-item" href="loginpage.php">As Admin</a>
 </div>
 </div>

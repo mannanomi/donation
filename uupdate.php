@@ -1,6 +1,6 @@
 <?php
 include('login.php');
-if(empty($_SESSION['username'])){
+if(empty($_SESSION['user_name'])){
   header('location: loginpage.php');
 }
  ?>
@@ -32,7 +32,7 @@ if(empty($_SESSION['username'])){
 
 
 
-     <?php if(isset($_SESSION['username'])):
+     <?php if(isset($_SESSION['user_name'])):
 
        if(isset($_GET['id'])){
          $id = $_GET['id'];
@@ -40,18 +40,12 @@ if(empty($_SESSION['username'])){
 
        if(isset($_POST['update-btn'])){
        require_once 'db_connect.php';
-         $user = $_SESSION['username'];
-         $title = mysqli_real_escape_string($db, $_POST['title']);
-         $category = mysqli_real_escape_string($db, $_POST['category']);
-         $organization = mysqli_real_escape_string($db, $_POST['organization']);
-         $exp = mysqli_real_escape_string($db, $_POST['exp']);
-         $detail = mysqli_real_escape_string($db, $_POST['detail']);
-         $goal = mysqli_real_escape_string($db, $_POST['goal']);
-         $deadline = mysqli_real_escape_string($db, $_POST['deadline']);
+         $uname = $_SESSION['user_name'];
+         $name = mysqli_real_escape_string($db, $_POST['name']);
          $email = mysqli_real_escape_string($db, $_POST['email']);
          $mobile = mysqli_real_escape_string($db, $_POST['mobile']);
 
-         $query = "UPDATE events SET user='$user', title='$title', exp='$exp', goal='$gaol', deadline='$deadline', detail='$detail', organization='$organization', category = '$category', email ='$email' WHERE id='$id'";
+         $query = "UPDATE users SET user_name='$uname', name='$name', email='$email', mobile='$mobile' WHERE id='$id'";
          if (mysqli_query($db, $query)) {
          echo "<script type='text/javascript'>alert('Add successfully');window.location.href='dashboard.php';</script>";
        } else {
@@ -65,19 +59,14 @@ if(empty($_SESSION['username'])){
 
        require_once 'db_connect.php';
 
-       $query = "SELECT * FROM events WHERE id= '$id'";
+       $query = "SELECT * FROM users WHERE id= '$id'";
        $result= mysqli_query($db,$query);
 
        if (mysqli_num_rows($result) == 1){
          $row = mysqli_fetch_assoc($result);
-         $title = $row['title'];
-         $exp = $row['exp'];
-         $goal = $row['goal'];
-         $deadline = $row['deadline'];
-         $detail = $row['detail'];
-         $organization = $row['organization'];
+         $name = $row['name'];
          $email = $row['email'];
-         $category = $row['category'];
+         $mobile = $row['mobile'];
        }
 
 
@@ -99,18 +88,12 @@ if(empty($_SESSION['username'])){
                  <option value="Health">HEALTH & MEDICAL</option>
                </select>
               </div>
-                    <h6 class="font-weight-bold mt-3">Organization</h6>
-                    <input type="text" class="form-control" value="<?php echo $organization; ?>" name="organization" required>
-                      <h6 class="font-weight-bold mt-3">Amount</h6>
-                       <input type="text" class="form-control" name="exp" value="<?php echo $exp; ?>" required>
-                      <h6 class="font-weight-bold mt-3">Description</h6>
-                      <textarea name="detail" rows="5" cols="30" required><?php echo $detail; ?></textarea>
-                      <h6 class="font-weight-bold mt-3">Goal</h6>
-                      <input type="text" class="form-control" name="goal" value="<?php echo $goal; ?>" required>
-                      <h6 class="font-weight-bold mt-3">Deadline</h6>
-                      <input type="date" class="form-control" name="deadline" value="<?php echo $deadline; ?>" required>
+                    <h6 class="font-weight-bold mt-3">Name</h6>
+                    <input type="text" class="form-control" value="<?php echo $name; ?>" name="organization" required>
                       <h6 class="font-weight-bold mt-3">Email</h6>
-                      <input type="email" class="form-control" name="email" value="<?php echo $email; ?>" required>
+                      <textarea name="exp" rows="5" cols="30" required><?php echo $email; ?></textarea>
+                      <h6 class="font-weight-bold mt-3">Mobile</h6>
+                      <textarea name="detail" rows="5" cols="30" required><?php echo $mobile; ?></textarea>
                     <button class="btn btn-info text-light font-weight-bold mt-3" type="submit" name="update-btn">Update</button>
                 </form>
               </div>

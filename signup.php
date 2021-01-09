@@ -35,7 +35,7 @@
  Log In
 </button>
 <div class="dropdown-menu">
-  <a class="dropdown-item" href="ulog.php">As User</a>
+  <a class="dropdown-item" href="userlogin.php">As User</a>
   <a class="dropdown-item" href="loginpage.php">As Admin</a>
 </div>
 </div>
@@ -58,10 +58,11 @@
 	</nav>
 
 	<div class="container">
+        
 
 			<div class="row d-flex align-items-center justify-content-center" style="height:100vh;">
 					<form class="input-form" action="signup-check.php" method="post">
-
+             <h3>Create new account</h3>
             <?php if (isset($_GET['error'])) { ?>
      		<p class="error"><?php echo $_GET['error']; ?></p>
      	    <?php } ?>
@@ -145,10 +146,11 @@
 						</div> 
     
 						<h6 class="font-weight-bold text-center">If you Forgot your Username or Password please contact with the webmaster</h6>
+                     <a href="userlogin.php"> Already have an account Login</a>
 					</form>
-
+                
 			</div>
-
+          
 	</div>
 
 <script type="text/javascript">

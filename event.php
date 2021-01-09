@@ -11,8 +11,9 @@ $result= mysqli_query($db,$query);
 
 if (mysqli_num_rows($result) == 1){
   $row = mysqli_fetch_assoc($result);
+  $image=$row["image"];
   $title = $row['title'];
-  $req = $row['exp'];
+  $exp = $row['exp'];
   $goal = $row['goal'];
   $deadline = $row['deadline'];
   $detail = $row['detail'];
@@ -27,7 +28,12 @@ if (mysqli_num_rows($result) == 1){
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Job Details</title>
+  <title>Events</title>
+    <style>
+        .image{
+            box-shadow: 3px 3px 6px lightgrey;
+        }
+    </style>
   <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -52,7 +58,7 @@ if (mysqli_num_rows($result) == 1){
        <a class="nav-link" href="index.php">Home</a>
      </li>
      <li class="nav-item">
-       <a class="nav-link" href="loginpage.php">Log In</a>
+       <a class="nav-link" href="userlogin.php">Log In</a>
      </li>
    </ul>
   </div>
@@ -60,21 +66,20 @@ if (mysqli_num_rows($result) == 1){
   <div class="container">
     <div class="jumbotron">
       <div class="card">
+        <img class="image" src="eventspicture/<?php echo $image ?>"width="1042px" height="300px">
         <div class="card-header bg-dark">
           <h3 class="font-weight-bold text-light"><?php echo $title; ?> </h3>
         </div>
         <div class="card-body">
           <h5><b>Organization Name:</b> <?php echo $organization; ?> </h5>
-          <h6><b>Requirement:</b> <?php echo $req; ?> </h6>
+          <h6><b>Amount:</b> <?php echo $exp; ?> </h6>
           <h6><b>Detail:</b> <?php echo $detail; ?> </h6>
-          <h6><b>Amount:</b> <?php echo $goal; ?> </h6>
           <h6><b>Deadline:</b> <?php echo $deadline; ?> </h6>
           <h6><b>Email:</b> <?php echo $email; ?> </h6>
           <h6><b>Mobile:</b> <?php echo $mobile; ?> </h6>
-
         </div>
           <div class="card-footer">
-        <a class="btn btn-primary" href="donate.html" role="button">Donate</a>
+        <a class="btn btn-primary" href="donatenow.php" role="button">Donate</a>
       </div>
       </div>
     </div>

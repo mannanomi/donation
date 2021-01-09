@@ -1,16 +1,20 @@
-<?php 
-session_start();
-
-if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
-
- ?>
-
-
-
+<?php
+include('login.php');
+if(empty($_SESSION['username'])){
+    header('location: loginpage.php');
+    
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Give Donation</title>
+    <style>
+        .image{
+           
+            box-shadow: 3px 3px 6px lightgrey;
+        }
+    </style>
   <!-- Latest compiled and minified CSS -->
     <!-- <link rel="stylesheet" type="text/css" href="donationb.css"> -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -26,24 +30,28 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
-  <div class="container">
- <!-- Brand -->
- <a class="navbar-brand" href="index.php">Give Donation</a>
+	  <div class="container">
+	 <!-- Brand -->
+	 <a class="navbar-brand" href="#">Give Donation</a>
 
- <!-- Links -->
- <ul class="navbar-nav mx-auto">
-   <li class="nav-item">
-     <a class="navbar-brand" href="index.php">Event Home</a>
-   </li>
-        <li class="nav-item">
-     <a class="navbar-brand" href="userhome.php">Profile</a>
-   </li>
-     
- </ul>
-</div>
-</nav>
-<div class="jumbotron">
+	 <!-- Links -->
+	 <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+	         <a class="nav-link" href="dashboard.php">Dashboard</a>
+	       </li> 
+		 <li class="nav-item">
+    <a class="btn btn-warning btn-sm font-weight-bold" href="logout.php?logout='1'">Logout</a>
+	   </li>
+
+	 </ul>
+	</div>
+	</nav>
+      <div class="jumbotron">
 <div class="container">
+    <br>
+    <h1> " Making a donation is the ultimate sign of solidarity. Actions speak louder than words." </h1>
+    <br>
+    <br>
   <div class="row">
 
 <?php
@@ -77,8 +85,8 @@ if($search == 'All' || $search == ''){
 
 
     <div class="col-12 col-sm-4 col-md-3 mt-3">
-    <img class="image" src="eventspicture/<?php echo $image ?>"width="248px" height="200px">
-      <div class="card" style="height: 700px; width: 250px;">
+      <div class="card" style="height: 820px; width: 250px;">
+     <img class="image" src="eventspicture/<?php echo $image ?>"width="248px" height="200px">
       <div class="card-header bg-dark text-light">
         <h5><?php echo $title; ?></h5>
       </div>
@@ -86,14 +94,14 @@ if($search == 'All' || $search == ''){
         <p><?php echo $detail; ?></p>
         <h6 class="font-weight-bold">Organization:</h6>
         <p><?php echo $organization; ?></p>
-        <h6 class="font-weight-bold">Requirement:</h6>
+        <h6 class="font-weight-bold">Amount:</h6>
         <p><?php echo $exp; ?></p>
         <h6 class="font-weight-bold">Deadline:</h6>
         <p><?php echo $deadline; ?></p>
           <a href="event.php?id=<?php echo $id; ?>">read more</a>
       </div>
       <div class="card-footer">
-      <a class="btn btn-primary" href="#" role="button">Donate</a>
+      <a class="btn btn-primary" href="donatenow.php" role="button">Donate</a>
       
       </div>
     </div>
@@ -109,10 +117,3 @@ if($search == 'All' || $search == ''){
 </div>
 </body>
 </html>
-
-<?php 
-}else{
-     header("Location: index.php");
-     exit();
-}
- ?>

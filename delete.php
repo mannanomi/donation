@@ -15,7 +15,7 @@ if(isset($_GET['id'])){
 require_once 'db_connect.php';
 $query =" DELETE FROM events WHERE id = '$id'";
 if (mysqli_query($db, $query)) {
-echo "<script type='text/javascript'>alert('Delete successfully');window.location.href='update_job.php';</script>";
+echo "<script type='text/javascript'>alert('Delete successfully');window.location.href='update_event.php';</script>";
 } else {
 echo "Error: " . $query . "<br>" . mysqli_error($db);
 }
